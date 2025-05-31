@@ -1,0 +1,17 @@
+/* style.css */
+.formula-1-text {
+    font-family: 'Titillium Web', Arial, sans-serif;
+    font-weight: 900;
+    text-transform: uppercas
+    letter-spacing: 0.15em;
+    font-size: 2rem;
+    color: #e10600; /* Formula 1 red */
+    text-shadow: 1px 1px 2px #111;
+    /* Remove inline font-family and color from HTML */
+}
+p,li {
+  font-family: "Albert Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
