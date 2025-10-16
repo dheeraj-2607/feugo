@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>F15 — Project Portfolio</title>
+    <meta name="description" content="F15 buggy — interdisciplinary student project portfolio (mechanical, electronics, control, app, events)" />
+
+    <style>
+        :root{
+            --bg:#000000;
+            --card:#0b0b0b;
+            --muted:#bfbfbf;
+            --accent:#cb0e0e; /* bright red */
+            --accent-dark:#8b0808;
+            --glass: transparent;
+            --maxw:1100px;
+            --gap:18px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html,body{height:100%}
+        body{
+            margin:0;
+            background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+            color:#FFFFFF;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            padding: clamp(12px, 3vw, 28px);
+            display:flex;
+            justify-content:center;
+            font-size:16px;
+            line-height:1.45;
+        }
+
+        .wrap{
+            width:100%;
+            max-width:var(--maxw);
+        }
+
+        header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+            margin-bottom:20px;
+        }
+        .brand{
+            display:flex;
+            gap:12px;
+            align-items:center;
+        }
+        .logo{
+            width:56px;height:56px;border-radius:10px;
+            background:var(--accent);
+            display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px;
+            box-shadow: 0 6px 18px rgba(203,14,14,0.12);
+        }
+        h1{margin:0;font-size:20px}
+        .sub{color:var(--muted);font-size:13px;margin-top:2px}
+
+        .grid{
+            display:grid;
+            grid-template-columns: 1fr 360px;
+            gap:var(--gap);
+            align-items:start;
+        }
+        @media (max-width:980px){
+            .grid{grid-template-columns:1fr; padding-bottom:30px}
+        }
+
+        /* cards: flat very dark background with subtle red border */
+        .card{
+            background: var(--card);
+            border-radius:12px;
+            padding:20px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+            border:1px solid rgba(203,14,14,0.12);
+            color: #fff;
+        }
+
+        .hero{
+            display:flex;
+            gap:18px;
+            align-items:center;
+            margin-bottom:14px;
+        }
+        .hero .left{flex:1}
+        .kpis{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+        .kpi{
+            background: rgba(255,255,255,0.03);
+            padding:10px 12px;border-radius:10px;font-size:13px;color:var(--muted);
+            border:1px solid rgba(203,14,14,0.08);
+        }
+        .cta{
+            margin-top:14px;
+            display:flex;gap:10px;flex-wrap:wrap;
+        }
+        .btn{
+            background:var(--accent);
+            color:#fff;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer;
+            box-shadow: 0 6px 14px rgba(203,14,14,0.12);
+        }
+        .btn:hover{ background:var(--accent-dark); }
+
+        .ghost{
+            background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px 12px;border-radius:10px
+        }
+
+        section h2{
+            margin:0 0 8px 0;
+            font-size:16px;
+            color:#fff;
+        }
+        p.lead{color:var(--muted);margin-top:0}
+
+        .team-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:10px;
+        }
+        @media (max-width:600px){ .team-grid{grid-template-columns:1fr} }
+
+        .pill{
+            background: rgba(255,255,255,0.02);
+            padding:8px 10px;border-radius:8px;font-size:14px;color:#fff;border:1px solid rgba(203,14,14,0.06);
+        }
+
+        /* timeline */
+        .timeline{display:flex;flex-direction:column;gap:10px}
+        .step{display:flex;gap:12px;align-items:flex-start}
+        .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);flex:0 0 12px;margin-top:6px}
+        .step .meta{color:var(--muted);font-size:13px}
+
+        @media (min-width:981px){
+            aside .card{position:sticky;top:28px}
+        }
+        .mini{font-size:13px;color:var(--muted)}
+        .budget-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+        .budget-item{
+            display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;
+            background: rgba(255,255,255,0.02); border:1px solid rgba(203,14,14,0.06);
+            color:#fff;
+        }
+        .risk{
+            padding:10px;border-radius:8px;background:transparent;margin-top:8px;color:var(--muted);
+            border:1px solid rgba(203,14,14,0.06);
+        }
+
+        footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+        .source{font-size:12px;color:var(--muted);margin-top:12px}
+        code{background:transparent;padding:2px 6px;border-radius:6px;border:1px solid rgba(255,255,255,0.02); color:#fff}
+
+        /* links and small UI */
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+        /* small responsive tweak for fixed contact if present */
+        @media (max-width:980px) {
+            #contact { position: fixed; left:16px; right:16px; bottom:16px; z-index:1050; }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div class="brand">
+                <div class="logo">F15</div>
+                <div>
+                    <h1>F15 — The Feugo Buggy</h1>
+                    <div class="sub">Interdisciplinary student project • Mechanical • Electronics • Control • App</div>
+                </div>
+            </div>
+
+            <div style="text-align:right">
+                <div style="font-size:13px;color:var(--muted)">Status: Concept → Prototype</div>
+                <div style="font-size:12px;color:var(--muted);margin-top:8px">Team: 15 members</div>
+            </div>
+        </header>
+
+        <div class="grid">
+            <main class="card" style="min-height:380px" role="main">
+                <div class="hero">
+                    <div class="left">
+                        <h2>Executive Summary</h2>
+                        <p class="lead">
+                            F15 ("Feugo") is a lightweight buggy built around a 150cc Hero CBZ engine with a rectangular steel-pipe chassis,
+                            integrated suspension, Arduino/ESP-based electronics, and a mobile-control interface enabling start/stop, key activation,
+                            and an emergency kill switch. The project doubles as an educational platform with workshops, driving events, and demos.
+                        </p>
+
+                        <div class="kpis">
+                            <div class="kpi">Engine: 150cc Hero CBZ</div>
+                            <div class="kpi">Team: 15 members (EEE / ECE / CSE)</div>
+                            <div class="kpi">Estimated Cost: ₹40,000</div>
+                            <div class="kpi">Timeline: ~1 month (post-class)</div>
+                        </div>
+
+                        <div class="cta">
+                       <button class="btn" id="downloadDoc">Get Documentation</button>
+                           <a id="docLink" href="./Proposal for Building the Feugo.pdf" download style="display:none" aria-hidden="true"></a>
+                        </div>
+                    </div>
+
+                    <div style="width:220px;text-align:center">
+                        <img src="./initailbuggy.jpg" alt="F15 Buggy Side View" style="width:100%;height:200px;object-fit:cover;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.18);margin-bottom:8px" />
+                        <div style="margin-top:10px;color:var(--muted);font-size:13px">Open chassis • Modular track demos • Workshops</div>
+                    </div>
+                </div>
+
+                <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:14px 0">
+
+                <section id="objectives">
+                    <h2>Objectives & Scope</h2>
+                    <p class="lead">Design, build and demonstrate a fully functional buggy with advanced mobile-controlled features, safety systems, and community engagement through events and workshops.</p>
+
+                    <ul style="color:var(--muted);margin-top:8px">
+                        <li>Design & Build: CAD, chassis fabrication, engine & suspension integration.</li>
+                        <li>Control: Arduino/ESP firmware + mobile app for engine control and emergency shutdown.</li>
+                        <li>Testing: Modular track testing on campus with strict safety protocols.</li>
+                        <li>Community: Host workshops, driving events, and collaborative sessions for revenue & outreach.</li>
+                    </ul>
+                </section>
+
+                <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:14px 0">
+
+                <section id="team">
+                    <h2>Team</h2>
+                    <p class="mini">Flat team of 15 members — balanced contributions across EEE, ECE, and CSE.</p>
+
+                    <div class="team-grid" style="margin-top:10px">
+                        <div class="pill">Pranay K Pradeep — S5 EEE</div>
+                        <div class="pill">Renvin C J — S5 ECE</div>
+                        <div class="pill">Mohammed Shamil S — S5 ECE</div>
+                        <div class="pill">Nidhin Sudhakaran — S5 ECE</div>
+                        <div class="pill">Arjun N Binu — S5 EEE</div>
+                        <div class="pill">Josh Danial S — S5 EEE</div>
+                        <div class="pill">Asif Ali S — S5 ECE</div>
+                        <div class="pill">Alan S — S5 ECE</div>
+                        <div class="pill">Dheeraj A G — S5 CSE</div>
+                        <div class="pill">Ebin Mathews John — SE CSE</div>
+                        <div class="pill">Joel Joseph — S3 EEE</div>
+                        <div class="pill">Athul Krishnan B — S3 EEE</div>
+                        <div class="pill">Vinayak Sabu — S3 EEE</div>
+                        <div class="pill">Sarang V R — S3 EEE</div>
+                        <div class="pill">Aavandhika Vinod— S5 ECE</div>
+                    </div>
+                </section>
+
+                <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:14px 0">
+
+                <section id="tech">
+                    <h2>Technical Approach & Methodology</h2>
+                    <p class="mini">Mechanical, electronics, control systems, prototyping and iterative testing.</p>
+
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
+                        <div>
+                            <strong>Mechanical</strong>
+                            <p class="mini">Open chassis from rectangular steel pipes, integrated suspension with measurement mounts. (Chassis length template: 2m; front width 60cm; rear width 80cm; wheelbase & tyres: to be finalized.)</p>
+                        </div>
+                        <div>
+                            <strong>Electronics & Control</strong>
+                            <p class="mini">Arduino/ESP-based control, sensor integration (RPM meter), optional LoRa/GSM modules for remote control, mobile app for key/engine control and emergency kill switch.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:10px">
+                        <strong>Prototyping & Testing</strong>
+                        <ol style="color:var(--muted);margin-top:6px">
+                            <li>Concept & CAD → Component selection → Fabrication → Electronics integration → Field testing → Refinement</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:14px 0">
+
+                <section id="timeline">
+                    <h2>Timeline & Milestones</h2>
+                    <div class="timeline" style="margin-top:10px">
+                        <div class="step"><div class="dot" aria-hidden="true"></div><div><strong>Month 1-3</strong> — Concept sketches, basic CAD models.</div></div>
+                        <div class="step"><div class="dot" aria-hidden="true"></div><div><strong>Month 3-6</strong> — Detailed dimensions, component sourcing.</div></div>
+                        <div class="step"><div class="dot" aria-hidden="true"></div><div><strong>Month 6-12</strong> — Fabrication & assembly (chassis, suspension, engine).</div></div>
+                    </div>
+                </section>
+
+                <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:14px 0">
+
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                    <div class="source">
+                        Source: Proposal for Building the Feugo (project brief).
+                    </div>
+                    <div style="text-align:right;color:var(--muted);font-size:13px">Prepared for display • F15 Project</div>
+                </div>
+            </main>
+
+            <aside>
+                <div class="card">
+                    <h2>Budget (Est.)</h2>
+                    <div class="mini" style="margin-top:6px">Preliminary estimates in INR</div>
+
+                    <div class="budget-list">
+                        <div class="budget-item"><div>Chassis & Structure</div><div><strong>₹15,000</strong></div></div>
+                        <div class="budget-item"><div>Engine & Drive</div><div><strong>₹15,000</strong></div></div>
+                        <div class="budget-item"><div>Electronics & Sensors</div><div><strong>₹5,000</strong></div></div>
+                        <div class="budget-item"><div>Control Modules & App</div><div><strong>₹5,000</strong></div></div>
+                        <div class="budget-item" style="background:rgba(255,255,255,0.02);font-weight:700"><div>Total</div><div>₹40,000</div></div>
+                    </div>
+
+                    <div style="margin-top:12px">
+                        <h2 style="font-size:14px;margin-bottom:6px">Key Risks</h2>
+                        <div class="risk"><strong>Technical delays</strong><div class="mini">Component procurement or integration delays.</div></div>
+                        <div class="risk"><strong>Safety hazards</strong><div class="mini">Strict PPE, emergency kill switch, and controlled testing environments required.</div></div>
+                        <div class="risk"><strong>Budget overruns</strong><div class="mini">Reserve 10–15% contingency; pursue sponsorships & grants.</div></div>
+                    </div>
+
+                    <div style="margin-top:14px">
+                        <h2 style="font-size:14px;margin-bottom:6px">Revenue Ideas</h2>
+                        <ul style="color:var(--muted);margin-top:6px">
+                            <li>Workshops & Webinars</li>
+                            <li>Driving events / time-trials</li>
+                            <li>Sponsorship & club collaborations (IEEE, SAE, IEDC)</li>
+                            <li>Digital content & event registration</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                </div>
+              <div id="contact-grid" class="container mt-4">
+                   <h2>Contact</h2>
+                       <div class="col">
+                           <div class="card p-3">
+                               <strong>Renvin C J</strong>
+                               <div class="mini">Team Lead</div>
+                               <div style="margin-top:8px;color:var(--muted);font-size:13px">cjrenvin@gmail.com</div>
+                                <div style="margin-top:8px;color:var(--muted);font-size:13px">Phone:8921661311</div>
+
+                               <button class="btn mt-3" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=cjrenvin%40gmail.com','_blank')">Get in touch</button>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+            </aside>
+        </div>
+
+        
+    </div>
+    
+</body>
+<footer>
+<script>
+  // Download the PDF when the button is clicked.
+  (function(){
+    const btn = document.getElementById('downloadDoc');
+    const link = document.getElementById('docLink');
+    if(!btn || !link) return;
+    btn.addEventListener('click', function(){
+      // If the PDF might be large or remote, you can optionally fetch it first.
+      // For a local file in the repo, a direct click on the anchor with download is sufficient.
+      link.click();
+    });
+  })();
+</script>
+</html>
